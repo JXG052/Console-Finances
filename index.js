@@ -89,7 +89,7 @@ var finances = [
 
 let totalMonths = finances.length -1;
 let total = getTotal(finances);
-let averageChange = total/totalMonths;
+let averageChange = Math.round(((total/totalMonths)*100))/100;
 // Calculate total using a for loop
 function getTotal(arr){
     let sum = 0;
@@ -101,4 +101,5 @@ function getTotal(arr){
 console.log(`Total Months: ${totalMonths}`);
 console.log(`Total Profit and Loss: ${total}`);
 console.log(`Average Change: ${averageChange}`);
+console.table(finances)
 
