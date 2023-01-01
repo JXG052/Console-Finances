@@ -107,13 +107,16 @@ function getTotal(arr){
 // returns gap per month
 function getGapPerMonth(arr) {
     let arrOfPL= [];
+    
     for (let i = 0; i < arr.length; i++){
         arrOfPL.push(arr[i][1]);
     }
     let gapPerMonth = []
-    for (let j = 0; j < arrOfPL.length -1; j++){
+    for (let j = 0; j < arrOfPL.length; j++){
         gapPerMonth[j] = arrOfPL[j+1] - arrOfPL[j];
     }
+    // add month 1 to balance index with month
+    gapPerMonth.unshift(arr[0][1]);
     return gapPerMonth
 };
 
@@ -141,7 +144,7 @@ function getMaxLoss(gapPerMonth){
             index = i;
         }
     }
-    return [finances[index], maxLoss];
+    return [index, maxLoss];
 }
 
 // let maxProfit = getMaxProfit(gapPerMonth);
@@ -151,18 +154,19 @@ function getFullReport(arr){
     let netProfit = getTotal(arr);
     let averageChange = Math.round(((netProfit/totalMonths)*100))/100;
     let gapPerMonth = getGapPerMonth(arr);
+    
     let maxProfit = getMaxProfit(gapPerMonth);
+    
     let maxLoss = getMaxLoss(gapPerMonth);
     console.log(
         `Financial Analysis\n
-        ---------------------------\n
+        
         Total Months: ${totalMonths}\n
         Total: ${netProfit}\n
         Average Change: ${averageChange}\n
         Greatest Increase in Profits: ${arr[maxProfit[0]][0]} (£${maxProfit[1]})\n
-        Greatest Decrease in Profits: ${maxLoss}\n`
+        Greatest Decrease in Profits: ${arr[maxLoss[0]][0]} (£${maxLoss[1]})\n`
         
     )
 }
-//getFullReport(finances);
-console.table(finances)
+getFullReport(finances);
