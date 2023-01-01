@@ -86,3 +86,19 @@ var finances = [
 ['Jan-2017', 138230],
 ['Feb-2017', 671099]
 ];
+
+let totalMonths = finances.length -1;
+let total = getTotal(finances);
+let averageChange = total/totalMonths;
+// Calculate total using a for loop
+function getTotal(arr){
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++){
+        sum+= arr[i][1];
+    }
+    return sum;
+}
+console.log(`Total Months: ${totalMonths}`);
+console.log(`Total Profit and Loss: ${total}`);
+console.log(`Average Change: ${averageChange}`);
+
