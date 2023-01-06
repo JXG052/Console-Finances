@@ -20,6 +20,10 @@ Your task is to write JavaScript code that analyzes the records to calculate eac
 
 * The average of the **changes** in Profit/Losses over the entire period.
   * You will need to track what the total change in profits are from month to month and then find the average.
+  // JG COMMENT: 
+      // For loop, find difference between each index. 
+        // calc the sumOftheDifferences
+        // divide sumOfDifferences/numberOfMonths;
   * (`Total/Number of months`)
 
 * The greatest increase in profits (date and amount) over the entire period.

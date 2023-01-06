@@ -1,0 +1,55 @@
+Criteria:
+    1. total number of months
+        // let numOfMonths = finances.length
+    2. total amount of Profit/ Losses over entire period
+        // . reduce
+        // for each month
+        // runningTotal += finances[month]
+
+    3. average of the changes in profit loss over entire period
+        // Total/ NumOfMonths
+    
+    4. Greatest increase in Profits (data and amount)
+        //  greatest increase in profits:
+            // for each gapinProfit
+            // return largest  - key value pair 
+            // return smallest - key value pair
+
+INPUT: The input is an array of arrays containing a month and number
+OUTPUT:
+1. Total Months : 
+2. Average Change:
+3. Greatest Increase in Profits:
+4. Greatest Decrease in Profits: 
+
+Process/ PSEUDO:
+    Start with Output number one:
+        let totalMonths = finances.length
+    
+    Output 2:
+        let averageChange = totalPL/ sum of all values in array
+
+    Output 3:
+        let greatestIncrease = 0
+        for each gap
+        if gap i is greater than greatestIncrease
+        then greatestIncrease is updated
+    Output 4:
+        let greatestDecrease = 10000000000
+        for each gap
+        if gap i is less than greatestDecrease
+        then greatestDecrease is updated
+
+
+
+
+Print to Browser:
+
+Financial Analysis
+----------------------------
+Total Months: 25
+Total: $2561231
+Average  Change: $-2315.12
+Greatest Increase in Profits: Feb-2012 ($1926159)
+Greatest Decrease in Profits: Sep-2013 ($-2196167)
+        

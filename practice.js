@@ -1,3 +1,8 @@
+/*
+The below is my first attempt at solving, that I attempted before this weeks classes. 
+Solved using functions.
+Need to clarify about the average of the changes. 
+*/
 var finances = [
 ['Jan-2010', 867884],
 ['Feb-2010', 984655],
@@ -108,9 +113,11 @@ function getTotal(arr){
 function getGapPerMonth(arr) {
     let arrOfPL= [];
     
+    
     for (let i = 0; i < arr.length; i++){
         arrOfPL.push(arr[i][1]);
     }
+
     let gapPerMonth = []
     for (let j = 0; j < arrOfPL.length; j++){
         gapPerMonth[j] = arrOfPL[j+1] - arrOfPL[j];
@@ -118,6 +125,7 @@ function getGapPerMonth(arr) {
     // add month 1 to balance index with month
     gapPerMonth.unshift(arr[0][1]);
     return gapPerMonth
+
 };
 
 // let gapPerMonth = (getGapPerMonth(arr));
@@ -170,3 +178,5 @@ function getFullReport(arr){
     )
 }
 getFullReport(finances);
+
+
