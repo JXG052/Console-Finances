@@ -91,90 +91,143 @@ var finances = [
 ['Jan-2017', 138230],
 ['Feb-2017', 671099]
 ];
-
+const numOfMonths = finances.length;
 let values = []; // array of only the values
 let months = []; // array of months
 for (let i = 0; i < finances.length; i++){
     values.push(finances[i][1])
     months.push(finances[i][0])
 } 
-console.log(values) 
-console.log(months)
+//console.table(values)  
+//console.table(months)
+
+
+
+ let totalSum = 0
+ for (let i = 0; i < finances.length; i++){
+    totalSum += finances[i][1]
+ }
+ console.log(totalSum)
+
 
 //returns the total of a given array of numers 
 function getTotal(arr){
     let sum = 0;
     for (let i = 0; i < arr.length; i++){
-        sum+= arr[i][1];
+        sum+= arr[i];
     }
     return sum;
 }
-// Takes a 2d array and returns arr[0][j]
-// length of returned array will be one less than input
+//console.log(getTotal(values))
+let total = Math.round(getTotal(values)*100)/100;
 
-    
-    
-//     for (let i = 0; i < arr.length; i++){
-//         arrOfPL.push(arr[i][1]);
-//     }
-//     let gapPerMonth = []
-//     for (let j = 0; j < arrOfPL.length; j++){
-//         gapPerMonth[j] = arrOfPL[j+1] - arrOfPL[j];
-//     }
-//     // add month 1 to balance index with month
-//     gapPerMonth.unshift(arr[0][1]);
-//     return gapPerMonth
-// };
-// let gapPerMonth = (getGapPerMonth(arr));
-// returns highest profit and corresponding index
 
-// function getMaxProfit(gapPerMonth){
-//     let maxProfit = 0;
-//     let index = 0;
-//     for (let i = 0; i < gapPerMonth.length; i++){
-//         if (gapPerMonth[i]> maxProfit){
-//             maxProfit = gapPerMonth[i];
-//             index = i;
-//         }
-//     }
-//     return [index, maxProfit];
-// }
-// // returns greatest loss and at what index
-// function getMaxLoss(gapPerMonth){
-//     let maxLoss = 0;
-//     let index = 0;
+// takes an array of nums and returns the diff between those nums
+// !!!!IMPORTANT!!!!!
+// return result will be one less than 
+function getDifference(arr){
+    let result = []
+    for (let i = 0; i < arr.length-1; i++) {
+        result[i] = arr[i+1]-arr[i]
+    }
+    return result
+}
 
-//     for (let i = 0; i < gapPerMonth.length; i++){
-//         if (gapPerMonth[i] < maxLoss){
-//             maxLoss = gapPerMonth[i];
-//             index = i;
-//         }
-//     }
-//     return [index, maxLoss];
-// }
+// changes is an array of the difference between the values
+// note that the months do not correspond directly. 
+// i.e change index 0 is in relation to months index [1]
+let changes = getDifference(values);
+// console.table(changes)
 
-// // let maxProfit = getMaxProfit(gapPerMonth);
-// // console.log(maxProfit)
-// function getFullReport(arr){
-//     let totalMonths = (arr.length) -1;
-//     let netProfit = getTotal(arr);
-//     let averageChange = Math.round(((netProfit/totalMonths)*100))/100;
-//     let gapPerMonth = getGapPerMonth(arr);
-    
-//     let maxProfit = getMaxProfit(gapPerMonth);
-    
-//     let maxLoss = getMaxLoss(gapPerMonth);
-//     console.log(
-//         `Financial Analysis\n
+// Changes from Zero is the changes, assuming that:
+// the first change is from a previous month of zero
+// i.e the first month is all profit and the months correspond
+// i.e changesFromZero index 0 is in relation to months index [0]
+let changesFromZero = [...changes]
+changesFromZero.unshift(values[0]);
+// console.table(changesFromZero)
+
+let averageChange = getTotal(changes)/ changes.length
+console.log(getTotal(changes));
+averageChange = Math.round(averageChange * 100)/ 100
+// console.log(`averageChange: ${averageChange}`)
+
+let averageChangeFromZero = getTotal(changesFromZero)/changesFromZero.length;
+averageChangeFromZero = Math.round(averageChangeFromZero*100)/100
+// console.log(`AverageChangeFromZero: ${averageChangeFromZero}`)
+
+
+// CODE ABOVE THIS LINE WORKS
+
+
+// what Month was max profit?
+// returns the index of the maxprofit and the max profit
+function getMax(arr){
+    let max = 0;
+    let index = 0;
+    for (let i = 0; i < arr.length; i++){
+        if (arr[i] > max){
+            max = arr[i];
+            index = i;
+        }
+    }
+    return [index, max];
+}
+let maxProfit1 = getMax(changes)
+let monthOfMaxProfit1 = months[maxProfit1[0]+1] 
+// console.log(monthOfMaxProfit1)
+
+let maxProfit2 = getMax(changesFromZero)
+let monthOfMaxProfit2 = months[maxProfit2[0]]
+// console.log(monthOfMaxProfit2)
+
+// returns greatest loss and at what index
+function getMaxLoss(arr){
+    let maxLoss = 0;
+    let index = 0;
+
+    for (let i = 0; i < arr.length; i++){
+        if (arr[i] < maxLoss){
+            maxLoss = arr[i];
+            index = i;
+        }
+    }
+    return [index, maxLoss];
+}
+
+let maxLoss1 = getMaxLoss(changes);
+let monthofMaxLoss1 = months[maxLoss1[0]+1];
+let maxLoss2 = getMaxLoss(changesFromZero)
+let monthofMaxLoss2 = months[maxLoss2[0]]
+// console.log(monthofMaxLoss1);
+// console.log(monthofMaxLoss2)
+
+console.log(
+        `
+        based on first month profit/loss of £867,884 occuring in Jan 2010
         
-//         Total Months: ${totalMonths}\n
-//         Total: ${netProfit}\n
-//         Average Change: ${averageChange}\n
-//         Greatest Increase in Profits: ${arr[maxProfit[0]][0]} (£${maxProfit[1]})\n
-//         Greatest Decrease in Profits: ${arr[maxLoss[0]][0]} (£${maxLoss[1]})\n`
+        Financial Analysis
         
-//     )
-// }
+        Total Months: ${numOfMonths}
+        Total: £${total}
+        Average Change: £${averageChangeFromZero}
+        Greatest Increase in Profits: ${monthOfMaxProfit2} (£${maxProfit2[1]})
+        Greatest Decrease in Profits: ${monthofMaxLoss2} (£${maxLoss2[1]})\n`  
+    )
+
+    console.log(
+        `
+        based on first month profit/loss of £116,771 occuring in Feb 2010
+        
+        Financial Analysis
+        
+        Total Months: ${numOfMonths}
+        Total: £${total}
+        Average Change: £${averageChange}
+        Greatest Increase in Profits: ${monthOfMaxProfit1} (£${maxProfit1[1]})
+        Greatest Decrease in Profits: ${monthofMaxLoss1} (£${maxLoss1[1]})\n`  
+    )
+
 // getFullReport(finances);
 
 
