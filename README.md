@@ -12,7 +12,7 @@ This project was undertaken in order to improve my knowledge of Javascript utili
 - [Credits](#credits)
 - [License](#license)
 
-## Notes for Grader
+## Notes
 Please note that there was some confusion amongst the class, including from the TA's and the class instructor, as to what was meant by "average of the changes" and also as to what month the first "change" occured. 
 
 I firstly assumed that the first change in profit and loss, occured in Jan 2010, and was equal to that months profit/loss. This resulted in an average of the changes 
