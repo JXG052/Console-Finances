@@ -31,7 +31,7 @@ Open Web page and open the console in dev tools to see the results.
 
 ![image of what the console looks like](images/Screenshot.png)
 
-Link to [Live-Page](
+Link to [Live-Page](https://jxg052.github.io/Console-Finances/)
 
 ## Credits
 
