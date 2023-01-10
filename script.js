@@ -107,7 +107,7 @@ for (let i = 0; i < finances.length; i++){
  for (let i = 0; i < finances.length; i++){
     totalSum += finances[i][1]
  }
- console.log(totalSum)
+
 
 
 //returns the total of a given array of numers 
@@ -148,7 +148,7 @@ changesFromZero.unshift(values[0]);
 // console.table(changesFromZero)
 
 let averageChange = getTotal(changes)/ changes.length
-console.log(getTotal(changes));
+
 averageChange = Math.round(averageChange * 100)/ 100
 // console.log(`averageChange: ${averageChange}`)
 
